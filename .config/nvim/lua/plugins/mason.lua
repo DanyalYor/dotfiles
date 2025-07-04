@@ -6,7 +6,7 @@ return {
 	      ensure_installed = {
 		-- LSP servers
 		"bashls",
-		"lua_ls",
+		"lua-language-server",
 		"pyright",
 		"yamlls",
 
