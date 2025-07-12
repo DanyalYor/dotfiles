@@ -22,3 +22,10 @@ keymap("n", "<Leader>d", '"_d')
 keymap("n", "<Leader>D", '"_D')
 keymap("v", "<Leader>d", '"_d')
 keymap("v", "<Leader>D", '"_D')
+
+-- Travel through diagnostics
+keymap("n", "[d", vim.diagnostic.goto_next)
+keymap("n", "]d", vim.diagnostic.goto_prev)
+
+-- For going back to filetree
+keymap("n", "<leader>ex", vim.cmd.Ex)
