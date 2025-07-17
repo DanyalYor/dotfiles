@@ -1,14 +1,26 @@
 return {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {
-        ensure_installed = { 
-            -- lsp
-            "lua_ls",
-            "pyright",
+    {
+        "mason-org/mason.nvim",
+        opts = {
+            ensure_installed = {
+                "lua_ls",
+                "pyright",
+            },
+            ui = {
+                icons = {
+                    package_installed = "✓",
+                    package_pending = "➜",
+                    package_uninstalled = "✗"
+                }
+            },
         },
     },
-    dependencies = {
-        { "mason-org/mason.nvim", opts = {} },
-        "neovim/nvim-lspconfig",
+
+    {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {},
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+        },
     },
 }

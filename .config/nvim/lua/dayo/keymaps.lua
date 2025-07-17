@@ -28,4 +28,5 @@ keymap("n", "[d", vim.diagnostic.goto_next)
 keymap("n", "]d", vim.diagnostic.goto_prev)
 
 -- For going back to filetree
-keymap("n", "<leader>ex", vim.cmd.Ex)
+keymap("n", "<leader>x", vim.cmd.Ex)
+
