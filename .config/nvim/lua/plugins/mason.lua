@@ -2,10 +2,8 @@ return {
     {
         "mason-org/mason.nvim",
         opts = {
-            ensure_installed = {
-                "lua_ls",
-                "pyright",
-            },
+            automatic_installation = true,
+            lazy = true,
             ui = {
                 icons = {
                     package_installed = "✓",
@@ -15,12 +13,22 @@ return {
             },
         },
     },
-
     {
         "mason-org/mason-lspconfig.nvim",
-        opts = {},
+        opts = {
+            ensure_installed = {
+                "lua_ls",
+                "pyright",
+                "gopls",
+                "ts_ls",
+                "eslint",
+                "html",
+                "cssls",
+            },
+        },
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
         },
     },
 }
