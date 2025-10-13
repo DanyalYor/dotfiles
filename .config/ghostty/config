@@ -1,8 +1,7 @@
-theme = "Solarized Dark - Patched"
-
 background-opacity = 0.95
-background-blur-radius = 10
-background = #031219
+background-blur = 25
+
+theme = Gruvbox Dark Hard
 
 font-family = "PlemolJP Console NF"
 
@@ -11,4 +10,3 @@ cursor-style-blink = true
 
 macos-titlebar-proxy-icon = hidden
 title = " "
-
