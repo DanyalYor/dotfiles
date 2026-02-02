@@ -1,12 +1,1 @@
-background-opacity = 0.95
-background-blur = 25
-
-theme = DarkerMatrix
-
-font-family = "PlemolJP Console NF"
-
-cursor-style = block
-cursor-style-blink = true
-
-macos-titlebar-proxy-icon = hidden
-title = " "
+theme = dark:Kanagawa Dragon,light:Dayfox
