@@ -12,9 +12,10 @@ map("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 -- format
 map("n", "<leader>fm", vim.lsp.buf.format, { desc = "Format file" })
 
--- switch tabs
+-- buffer control
 map("n", "<Tab>", ":BufferNext<CR>", { desc = "Switch to next tab" })
 map("n", "<S-Tab>", ":BufferPrevious<CR>", { desc = "Switch to previous tab" })
+map("n", "<leader>x", ":BufferClose<CR>", { desc = "Close current buffer" })
 
 -- markdown preview
 map("n", "<leader>mp", ":MarkdownPreview<CR>", { desc = "Preview markdown file" })

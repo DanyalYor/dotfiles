@@ -3,11 +3,13 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
-        config = function()
-            require("nvim-treesitter").setup({
-                ensure_installed = { "lua", "vim", "vimdoc", "c", "cpp", "python" },
-            })
-        end,
+        main = 'nvim-treesitter.configs',
+        opts = {
+            auto_install = true,
+            highlight = { enable = true },
+            indent = { enable = true },
+            ensure_installed = { "lua", "vim", "vimdoc", "c", "cpp", "python" },
+        },
     },
 
     -- filetree
@@ -59,7 +61,7 @@ return {
     {
         'romgrk/barbar.nvim',
         dependencies = {
-            'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+            'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
             'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
         },
         init = function() vim.g.barbar_auto_setup = false end,
