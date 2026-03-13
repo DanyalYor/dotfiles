@@ -5,14 +5,32 @@ return {
     },
     {
         "mason-org/mason-lspconfig.nvim",
-        opts = {},
+        opts = {
+            handlers = {
+                -- Custom handler for ruff LSP
+                ruff = function()
+                    local lspconfig = require('lspconfig')
+                    lspconfig.ruff.setup({
+                        settings = {
+                            -- Configure ruff formatting options
+                            -- Using 4 spaces as requested
+                            ['ruff'] = {
+                                lineLength = 88,
+                                indentWidth = 4,
+                                -- Other ruff settings can be added here
+                            }
+                        }
+                    })
+                end,
+            }
+        },
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
             "neovim/nvim-lspconfig",
         },
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "basedpyright", "clangd" },
+                ensure_installed = { "lua_ls", "basedpyright", "clangd", "ruff" },
             })
         end,
     },
@@ -78,7 +96,7 @@ return {
                 },
                 experimental = {
                     ghost_text = true, -- set to true for inline preview
-                }
+                },
             })
 
             -- Enable cmdline completion (e.g., :find <Tab>)
