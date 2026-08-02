@@ -12,6 +12,9 @@ map("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 -- format
 map("n", "<leader>fm", vim.lsp.buf.format, { desc = "Format file" })
 
+-- lsp
+map({ "n" }, "<leader>k", vim.lsp.buf.signature_help, { desc = "Show function signature" })
+
 -- buffer control
 map("n", "<Tab>", ":BufferNext<CR>", { desc = "Switch to next tab" })
 map("n", "<S-Tab>", ":BufferPrevious<CR>", { desc = "Switch to previous tab" })

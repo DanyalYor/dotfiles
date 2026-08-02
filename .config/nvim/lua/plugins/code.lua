@@ -5,33 +5,26 @@ return {
     },
     {
         "mason-org/mason-lspconfig.nvim",
-        opts = {
-            handlers = {
-                -- Custom handler for ruff LSP
-                ruff = function()
-                    local lspconfig = require('lspconfig')
-                    lspconfig.ruff.setup({
-                        settings = {
-                            -- Configure ruff formatting options
-                            -- Using 4 spaces as requested
-                            ['ruff'] = {
-                                lineLength = 88,
-                                indentWidth = 4,
-                                -- Other ruff settings can be added here
-                            }
-                        }
-                    })
-                end,
-            }
-        },
+        opts = {},
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
             "neovim/nvim-lspconfig",
         },
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "basedpyright", "clangd", "ruff" },
+                ensure_installed = { "lua_ls", "pylsp", "clangd" },
             })
+
+            -- Disable pylsp diagnostic plugins
+            local cfg = vim.lsp.config.pylsp or {}
+            cfg.settings = vim.tbl_deep_extend("force", cfg.settings or {}, {
+                pylsp = {
+                    plugins = {
+                        pycodestyle = { enabled = false },
+                    },
+                },
+            })
+            vim.lsp.config.pylsp = cfg
         end,
     },
 
