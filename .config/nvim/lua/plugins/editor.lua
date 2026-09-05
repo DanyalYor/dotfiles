@@ -1,15 +1,37 @@
 return {
-    -- treesitter
+    -- treesitter (main branch rewrite, see :h nvim-treesitter)
     {
         'nvim-treesitter/nvim-treesitter',
+        branch = 'main',
+        lazy = false,
         build = ':TSUpdate',
-        main = 'nvim-treesitter.configs',
-        opts = {
-            auto_install = true,
-            highlight = { enable = true },
-            indent = { enable = true },
-            ensure_installed = { "lua", "vim", "vimdoc", "c", "cpp", "python" },
-        },
+        config = function()
+            require('nvim-treesitter').setup {}
+
+            -- Install parsers synchronously on first run if missing
+            local parsers = { "lua", "vim", "vimdoc", "c", "cpp", "python" }
+            local installed = require('nvim-treesitter').get_installed()
+            local need_install = {}
+            for _, lang in ipairs(parsers) do
+                if not vim.tbl_contains(installed, lang) then
+                    table.insert(need_install, lang)
+                end
+            end
+            if #need_install > 0 then
+                require('nvim-treesitter').install(need_install):wait(300000)
+            end
+
+            -- Enable treesitter features per filetype (highlight, indent, folds)
+            vim.api.nvim_create_autocmd('FileType', {
+                pattern = parsers,
+                callback = function()
+                    vim.treesitter.start()
+                    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+                    vim.wo.foldmethod = 'expr'
+                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                end,
+            })
+        end,
     },
 
     -- filetree
